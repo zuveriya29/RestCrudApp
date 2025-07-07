@@ -30,5 +30,31 @@ public class StudentController {
 		Student student =repo.findById(id).get();
 		return student;
 	}
+	@PostMapping("/student/add")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public void createStudent(@RequestBody Student student){
+		{
+			repo.save(student);
+	}
+		
+		
+	}
+	@PutMapping("/student/update/{id}")
+	public Student updateStudents(@PathVariable int id) {
+		Student student = repo.findById(id).get();
+		student.setPercentage(92);
+		student.setName("poonam");
+		repo.save(student);
+		return student;
+		
+	}
+	@DeleteMapping("/student/delete/{id}")
+	public void removeStudent(@PathVariable int id) {
+		Student student = repo.findById(id).get();
+		repo.delete(student);
+	}
 
 }
+
+
+
